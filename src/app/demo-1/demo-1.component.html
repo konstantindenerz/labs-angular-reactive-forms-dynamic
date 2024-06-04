@@ -1,0 +1,22 @@
+<form [formGroup]="formGroup">
+  <app-status [control]="formGroup"/>
+  <div>
+    <h2>Plain Required Input</h2>
+    <label for="title">Title</label>
+    <input formControlName="title" id="title"/>
+
+
+    <app-date-time-range-picker formControlName="date"/>
+  </div>
+
+
+  <div>
+    <h2>Dynamic Child Form Registration <input type="checkbox" [checked]="showChildForm"
+                                               (click)="showChildForm = !showChildForm"></h2>
+    @if (showChildForm) {
+      <app-address-form key="address"></app-address-form>
+    }
+  </div>
+
+  <button (click)="reset()">Reset</button>
+</form>

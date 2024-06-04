@@ -1,0 +1,31 @@
+<div>
+  @if (control().valid) {
+    ✅
+  } @else {
+    ❌
+  }
+  valid: {{ control().valid }}
+</div>
+<div>
+  @if (control().dirty) {
+    ⚡️
+  }
+  dirty: {{ control().dirty }}
+</div>
+<div>
+  @if (control().touched) {
+    🤝
+  }
+  touched: {{ control().touched }}
+</div>
+<div>
+  @if (!control().pristine) {
+    ⚡️
+  }
+  pristine: {{ control().pristine }}
+</div>
+
+<div>
+  value: {{ control().value | json }}
+</div>
+

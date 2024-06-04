@@ -1,0 +1,15 @@
+@if (formGroup) {
+  <div [formGroup]="formGroup">
+    @for (field of fields(); track field.key) {
+      <label [for]="field.key">{{ field.key }}</label>
+      @switch (field.type) {
+        @case ('text') {
+          <input type="text" [formControl]="field.control" [id]="field.key">
+        }
+        @case ('number') {
+          <input type="number" [formControl]="field.control" [id]="field.key">
+        }
+      }
+    }
+  </div>
+}
