@@ -1,13 +1,30 @@
 @if (formGroup) {
+  <app-status [control]="formGroup"></app-status>
   <div [formGroup]="formGroup">
     @for (field of fields(); track field.key) {
-      <label [for]="field.key">{{ field.key }}</label>
       @switch (field.type) {
         @case ('text') {
+          <label [for]="field.key">{{ field.key }}</label>
           <input type="text" [formControl]="field.control" [id]="field.key">
         }
         @case ('number') {
+          <label [for]="field.key">{{ field.key }}</label>
           <input type="number" [formControl]="field.control" [id]="field.key">
+        }
+        @case ('groups') {
+          <div [formArrayName]="field.key">
+            <h2>{{field.key}}</h2>
+            @for (group of field.groups; track group; let i = $index) {
+              <div [formGroupName]="i">
+                <h3>{{i}}</h3>
+                @for (groupField of group.fields; track groupField) {
+                  <label [for]="groupField.key">{{ groupField.key }}</label>
+                  <input type="text" [formControl]="groupField.control" [id]="groupField.key">
+                }
+              </div>
+            }
+            <button (click)="addRow(field)">Add row</button>
+          </div>
         }
       }
     }

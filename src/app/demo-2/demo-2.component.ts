@@ -13,7 +13,17 @@ import {DynamicFormComponent} from './dynamic-form/dynamic-form.component';
 })
 export class Demo2Component {
   config = signal<Config>({
-    fields: [{type: 'text', key: 'firstname'}, {type: 'text', key: 'lastname'}, {type: 'number', key: 'age'}],
+    fields: [{type: 'text', key: 'firstname'}, {type: 'text', key: 'lastname'}, {type: 'number', key: 'age'}, {
+      type: 'groups',
+      key: 'test',
+      groups: [
+        {
+          fields: [
+            {type: 'text', key: 'field1'}
+          ]
+        }
+      ]
+    }],
   });
 
   toggle() {
